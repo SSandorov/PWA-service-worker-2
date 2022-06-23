@@ -52,3 +52,37 @@ self.addEventListener('activate', event => {
     */
     console.log('Se activó el sw');
 });
+
+
+/* 
+Evento para manejar las peticiones HTTP
+
+Este evento intercepta todo tipo de peticiones
+    - Archivos (css, html, ...)
+    - Imágenes y vídeos
+    - APIs externas
+*/
+self.addEventListener('fetch', event => {
+    // Con el event.request recibimos todas las peticiones interceptadas
+    /*
+    Con el evento fetch se busca manejar las estrategias del almacenamiento de la
+    información en el caché
+
+    En él decidimos que información guardamos y que información eliminamos. También
+    elegimos que usuarios pueden entrar o no dependiendo de la información que pidan
+    */
+    console.log('SW: ', event.request.url);
+
+    // esto es un ejemplo de como se maneja la intercepción de las peticiones
+    if(event.request.url.includes('https://reqres.in/')) {
+        const resp = new Response(`
+        {
+            ok: false,
+            mensaje: perfecto
+        }`)
+        // es importante el uso del respondWith, porque es la manera en la que modificamos
+        // la respuesta de la petición
+        // esta respuesta está enlazada a la petición fetch del app.js a la API
+        event.respondWith(resp);
+    }
+});

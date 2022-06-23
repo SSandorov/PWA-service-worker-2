@@ -17,3 +17,12 @@ if ( navigator.serviceWorker ) {
     */
     navigator.serviceWorker.register('/sw.js');
 }
+
+// Añadimos una petición para manejarla con el evento fetch
+
+const usuarioUrl = 'https://reqres.in/api/users?page=2';
+
+// Petición get
+fetch(usuarioUrl)
+    .then(resp => resp.text())
+    .then(console.log);
