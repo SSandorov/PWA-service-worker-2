@@ -24,6 +24,15 @@ if  (window.SyncManager) {
     console.log('La página funciona sin conexión');
 }
 
+// También verificamos si existe la opción de las notificaciones push
+if  (window.Notification) {
+    // pedimos la confirmación del usuario para recibir notificaciones
+    Notification.requestPermission()
+    .then(result => {
+        console.log(result);
+    });
+}
+
 // Añadimos una petición para manejarla con el evento fetch
 
 const usuarioUrl = 'https://reqres.in/api/users?page=2';

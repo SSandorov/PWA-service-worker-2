@@ -106,3 +106,10 @@ self.addEventListener('sync', event => {
     console.log(event);
     console.log(event.tag);
 })
+
+/*
+Evento que maneja las notificaciones push
+*/
+self.addEventListener('push', event => {
+    console.log('Notificación recibida');
+});
