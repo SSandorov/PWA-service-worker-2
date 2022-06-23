@@ -86,3 +86,23 @@ self.addEventListener('fetch', event => {
         event.respondWith(resp);
     }
 });
+
+/*
+Evento que monitorea la conexión a internet, así el sw sabe cuando estamos conectados
+a internet y cuando no
+
+Con el caniuse.com podemos comprobar los navegadores que lo soportan
+Aunque el buscador no tenga la API de la sincronización sin conexión, la información 
+se almacena igualmente en el caché y se recupera de otra manera, así que hay solución 
+al problema
+
+Para ver el resultado de esto, debemos desconectar el internet volver a conectarlo
+
+En secciones futuras manejaremos el sync en casos reales, así que aquí solo vemos su
+estructura y uso
+*/
+self.addEventListener('sync', event => {
+    console.log('Tenemos conexión');
+    console.log(event);
+    console.log(event.tag);
+})

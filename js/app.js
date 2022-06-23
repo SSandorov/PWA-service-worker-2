@@ -18,6 +18,12 @@ if ( navigator.serviceWorker ) {
     navigator.serviceWorker.register('/sw.js');
 }
 
+// Al igual que el SW, podemos comprobar si nuestro buscador maneja la sincronización
+// sin conexión
+if  (window.SyncManager) {
+    console.log('La página funciona sin conexión');
+}
+
 // Añadimos una petición para manejarla con el evento fetch
 
 const usuarioUrl = 'https://reqres.in/api/users?page=2';
